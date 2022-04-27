@@ -1,16 +1,23 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchTermAC } from "../../redux/reducers/user";
 import styles from "./Header.module.css";
 
-const Header = ({ setSearchTerm }) => {
+const Header = () => {
   const [tempSearch, setTempSearch] = useState("");
+  const dispatch = useDispatch();
+
+  const changeTempSearch = (event) => {
+    setTempSearch(event.target.value);
+  };
 
   const changeSearcTerm = () => {
-    setSearchTerm(tempSearch);
+    dispatch(setSearchTermAC(tempSearch));
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      setSearchTerm(tempSearch);
+      dispatch(setSearchTermAC(tempSearch));
     }
   };
 
@@ -63,7 +70,7 @@ const Header = ({ setSearchTerm }) => {
           className={styles.input}
           placeholder="Enter GitHub username"
           value={tempSearch}
-          onChange={(e) => setTempSearch(e.target.value)}
+          onChange={changeTempSearch}
           onKeyPress={handleKeyPress}
         />
       </div>

@@ -1,17 +1,22 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Preloader from "../Preloader/Preloader";
 import styles from "./User.module.css";
 
-const User = ({
-  avatar,
-  name,
-  login,
-  followers,
-  following,
-  url,
-  isFetchingUser,
-}) => {
+const User = () => {
+  const user = useSelector((state) => state.user.user);
+  const isFetchingUser = useSelector((state) => state.user.isFetchingUser);
+
   console.log("RENDER USER");
+
+  const {
+    avatar_url: avatar,
+    name,
+    login,
+    followers,
+    following,
+    html_url: url,
+  } = user;
 
   const followersNumberConverter = (followersNumber) => {
     if (followersNumber >= 1000) {
@@ -27,7 +32,7 @@ const User = ({
       ) : (
         <>
           <div className={styles.avatarContainer}>
-            <img className={styles.avatar} src={avatar} alt="avatar immage" />
+            <img className={styles.avatar} src={avatar} alt="user avatar" />
           </div>
 
           <div className={styles.name}>{name}</div>

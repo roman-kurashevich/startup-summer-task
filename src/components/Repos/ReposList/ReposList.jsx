@@ -1,23 +1,25 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Repo from "./Repo/Repo";
 import styles from "./ReposList.module.css";
 
-const ReposList = ({ currentItems }) => {
+const ReposList = () => {
+  const repos = useSelector((state) => state.user.repos);
   console.log("RENDER REPOS LIST");
 
   return (
     <div className={styles.reposList}>
-      {currentItems &&
-        currentItems.map((rep) => (
+      {repos &&
+        repos.map((repo) => (
           <Repo
-            key={rep.id}
-            name={rep.name}
-            url={rep.html_url}
-            description={rep.description}
+            key={repo.id}
+            name={repo.name}
+            url={repo.html_url}
+            description={repo.description}
           />
         ))}
     </div>
   );
 };
 
-export default ReposList;
+export default React.memo(ReposList);
