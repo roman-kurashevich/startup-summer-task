@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-import styles from "./Paginator.module.css";
-import { setCurrentPageAC, toggleIsNewUserAC } from "../../redux/reducers/user";
+import { actions } from "../../redux/reducers/user";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
+import { AppStateType } from "../../redux/store";
+import styles from "./Paginator.module.css";
 
-const Paginator = () => {
+const Paginator: React.FC = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [paginatorStatusString, setPaginatorStatusString] = useState("");
 
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.user.currentPage);
-  const numberOfRepos = useSelector((state) => state.user.numberOfRepos);
-  const itemsPerPage = ITEMS_PER_PAGE;
+  const currentPage = useSelector((state: AppStateType) => state.user.currentPage);
+  const numberOfRepos = useSelector((state: AppStateType) => state.user.numberOfRepos);
+  const itemsPerPage: number = ITEMS_PER_PAGE;
 
-  const changeCurrentPage = (pageNumber) => {
-    dispatch(toggleIsNewUserAC(false));
-    dispatch(setCurrentPageAC(pageNumber));
+  const changeCurrentPage = (pageNumber: number): void => {
+    dispatch(actions.toggleIsNewUserAC(false));
+    dispatch(actions.setCurrentPageAC(pageNumber));
   };
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
+    const endOffset: number = itemOffset + itemsPerPage;
     setPageCount(Math.ceil(numberOfRepos / itemsPerPage));
     setPaginatorStatusString(
       `${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`
     );
   }, [itemOffset, itemsPerPage]);
 
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % numberOfRepos;
-    changeCurrentPage(event.selected);
+  const handlePageClick = (selectedItem: { selected: number }): void => {
+    const newOffset = (selectedItem.selected * itemsPerPage) % numberOfRepos;
+    changeCurrentPage(selectedItem.selected);
     setItemOffset(newOffset);
   };
 
@@ -82,7 +83,8 @@ const Paginator = () => {
         breakLinkClassName={styles.pageLink}
         containerClassName={styles.pagination}
         activeClassName={styles.active}
-        renderOnZeroPageCount={null}
+        //@ts-ignore
+        // renderOnZeroPageCount={null}
         forcePage={currentPage}
       />
     </div>

@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSearchTermAC } from "../../redux/reducers/user";
+import { actions } from "../../redux/reducers/user";
 import styles from "./Header.module.css";
 
-const Header = () => {
+const Header: React.FC = () => {
   const [tempSearch, setTempSearch] = useState("");
   const dispatch = useDispatch();
 
-  const changeTempSearch = (event) => {
+  const changeTempSearch = (event: ChangeEvent<HTMLInputElement>): void => {
     setTempSearch(event.target.value);
   };
 
-  const changeSearcTerm = () => {
-    dispatch(setSearchTermAC(tempSearch));
+  const changeSearcTerm = (): void => {
+    dispatch(actions.setSearchTermAC(tempSearch));
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      dispatch(setSearchTermAC(tempSearch));
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === "Enter") {
+      dispatch(actions.setSearchTermAC(tempSearch));
     }
   };
 
@@ -70,6 +70,7 @@ const Header = () => {
           className={styles.input}
           placeholder="Enter GitHub username"
           value={tempSearch}
+          autoFocus
           onChange={changeTempSearch}
           onKeyPress={handleKeyPress}
         />

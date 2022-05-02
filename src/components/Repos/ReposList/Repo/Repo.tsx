@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "./Repo.module.css";
 
-const Repo = ({ name, description, url }) => {
+export type RepoPropsType = {
+  name: string
+  description: string
+  url: string
+}
+
+const Repo: React.FC<RepoPropsType> = ({ name, description, url }) => {
   return (
     <div className={styles.repo}>
       <a href={url} className={styles.name} target="_blank">

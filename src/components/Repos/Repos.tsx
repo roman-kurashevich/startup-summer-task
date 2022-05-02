@@ -4,11 +4,12 @@ import ReposList from "./ReposList/ReposList";
 import Preloader from "../Preloader/Preloader";
 import Paginator from "../Paginator/Paginator";
 import styles from "./Repos.module.css";
+import { AppStateType } from "../../redux/store";
 
-const Repos = () => {
-  const numberOfRepos = useSelector((state) => state.user.numberOfRepos);
-  const isFetchingUser = useSelector((state) => state.user.isFetchingUser);
-  const isFetchingRepos = useSelector((state) => state.user.isFetchingRepos);
+const Repos: React.FC = () => {
+  const numberOfRepos = useSelector((state: AppStateType) => state.user.numberOfRepos);
+  const isFetchingUser = useSelector((state: AppStateType) => state.user.isFetchingUser);
+  const isFetchingRepos = useSelector((state: AppStateType) => state.user.isFetchingRepos);
 
   console.log("RENDER REPOS");
 
@@ -21,8 +22,8 @@ const Repos = () => {
       )}
       {isFetchingRepos ? (
         <Preloader />
-      ) : (
-        <ReposList className={styles.reposList} />
+      ) : (  
+        <ReposList />
       )}
       {!isFetchingUser && <Paginator />}
     </div>
