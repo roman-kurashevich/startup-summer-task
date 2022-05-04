@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/redux-hooks";
 import Preloader from "../Preloader/Preloader";
 import styles from "./User.module.css";
 
-const User = () => {
-  const user = useSelector((state) => state.user.user);
-  const isFetchingUser = useSelector((state) => state.user.isFetchingUser);
+const User: React.FC = () => {
+  const user = useAppSelector((state) => state.user.user);
+  const isFetchingUser = useAppSelector(
+    (state) => state.user.isFetchingUser
+  );
 
   console.log("RENDER USER");
 
@@ -18,7 +20,7 @@ const User = () => {
     html_url: url,
   } = user;
 
-  const followersNumberConverter = (followersNumber) => {
+  const followersNumberConverter = (followersNumber: number) => {
     if (followersNumber >= 1000) {
       return (followersNumber / 1000).toFixed(1) + "k";
     }

@@ -1,15 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks/redux-hooks";
 import ReposList from "./ReposList/ReposList";
 import Preloader from "../Preloader/Preloader";
 import Paginator from "../Paginator/Paginator";
 import styles from "./Repos.module.css";
-import { AppStateType } from "../../redux/store";
 
 const Repos: React.FC = () => {
-  const numberOfRepos = useSelector((state: AppStateType) => state.user.numberOfRepos);
-  const isFetchingUser = useSelector((state: AppStateType) => state.user.isFetchingUser);
-  const isFetchingRepos = useSelector((state: AppStateType) => state.user.isFetchingRepos);
+  const numberOfRepos = useAppSelector((state) => state.user.numberOfRepos);
+  const isFetchingUser = useAppSelector((state) => state.user.isFetchingUser);
+  const isFetchingRepos = useAppSelector((state) => state.user.isFetchingRepos);
 
   console.log("RENDER REPOS");
 

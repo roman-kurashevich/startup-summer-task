@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-import { actions } from "../../redux/reducers/user";
+import { toggleIsNewUser, setCurrentPage } from "../../redux/userSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
-import { AppStateType } from "../../redux/store";
 import styles from "./Paginator.module.css";
 
 const Paginator: React.FC = () => {
@@ -11,14 +10,14 @@ const Paginator: React.FC = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [paginatorStatusString, setPaginatorStatusString] = useState("");
 
-  const dispatch = useDispatch();
-  const currentPage = useSelector((state: AppStateType) => state.user.currentPage);
-  const numberOfRepos = useSelector((state: AppStateType) => state.user.numberOfRepos);
+  const dispatch = useAppDispatch();
+  const currentPage = useAppSelector((state) => state.user.currentPage);
+  const numberOfRepos = useAppSelector((state) => state.user.numberOfRepos);
   const itemsPerPage: number = ITEMS_PER_PAGE;
 
   const changeCurrentPage = (pageNumber: number): void => {
-    dispatch(actions.toggleIsNewUserAC(false));
-    dispatch(actions.setCurrentPageAC(pageNumber));
+    dispatch(toggleIsNewUser(false));
+    dispatch(setCurrentPage(pageNumber));
   };
 
   useEffect(() => {

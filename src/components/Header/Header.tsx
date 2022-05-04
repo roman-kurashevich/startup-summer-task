@@ -1,23 +1,23 @@
 import React, { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { actions } from "../../redux/reducers/user";
+import { useAppDispatch } from "../../hooks/redux-hooks";
+import {setSearchTerm} from "../../redux/userSlice"
 import styles from "./Header.module.css";
 
 const Header: React.FC = () => {
   const [tempSearch, setTempSearch] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const changeTempSearch = (event: ChangeEvent<HTMLInputElement>): void => {
     setTempSearch(event.target.value);
   };
 
   const changeSearcTerm = (): void => {
-    dispatch(actions.setSearchTermAC(tempSearch));
+    dispatch(setSearchTerm(tempSearch));
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === "Enter") {
-      dispatch(actions.setSearchTermAC(tempSearch));
+      dispatch(setSearchTerm(tempSearch));
     }
   };
 

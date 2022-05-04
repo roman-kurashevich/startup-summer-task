@@ -1,11 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { AppStateType } from "../../../redux/store";
+import { useAppSelector } from "../../../hooks/redux-hooks";
 import Repo from "./Repo/Repo";
 import styles from "./ReposList.module.css";
 
-const ReposList = () => {
-  const repos = useSelector((state: AppStateType) => state.user.repos);
+const ReposList: React.FC = () => {
+  const repos = useAppSelector((state) => state.user.repos);
   console.log("RENDER REPOS LIST");
 
   return (
