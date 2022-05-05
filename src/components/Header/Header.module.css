@@ -29,6 +29,11 @@
   border: none;
   outline: none;
   background: none;
+  cursor: pointer;
+}
+
+.button:hover svg path {
+  fill: #0064EB;
 }
 
 .input {

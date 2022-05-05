@@ -1,11 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+
 import { getRepos, getUser } from "../api/users-api";
 
-//interface or type
-//maybe UserStateType?
-type InitialStateType = {
-  user: UserType;
-  repos: Array<RepoType>;
+type IUserState = {
+  user: IUser;
+  repos: Array<IRepo>;
   searchTerm: string;
   currentPage: number;
   numberOfRepos: number;
@@ -16,7 +15,7 @@ type InitialStateType = {
   isNewUser: boolean;
 };
 
-type UserType = {
+export type IUser = {
   name: string;
   login: string;
   followers: number;
@@ -25,21 +24,21 @@ type UserType = {
   html_url: string;
 };
 
-type RepoType = {
+export type IRepo = {
   id: number;
   name: string;
   description: string;
   html_url: string;
 };
 
-type RequestReposParamsType = {
+type IRequestReposParams = {
   searchTerm: string;
   currentPage: number;
 };
 
-const initialState: InitialStateType = {
-  user: {} as UserType,
-  repos: [] as Array<RepoType>,
+const initialState: IUserState = {
+  user: {} as IUser,
+  repos: [] as Array<IRepo>,
   searchTerm: "",
   currentPage: 0,
   numberOfRepos: 0,
@@ -52,10 +51,10 @@ const initialState: InitialStateType = {
 
 export const requestUser = createAsyncThunk(
   "user/requestUser",
-  async (searchTerm: string, { rejectWithValue, dispatch, getState }) => {
+  async (searchTerm: string, { rejectWithValue, dispatch }) => {
     try {
       let data = await getUser(searchTerm);
-      let user: UserType = {
+      let user: IUser = {
         name: data.name,
         login: data.login,
         followers: data.followers,
@@ -70,10 +69,9 @@ export const requestUser = createAsyncThunk(
       dispatch(toggleIsFetchingUser(false));
       dispatch(toggleIsNewUser(true));
 
-      dispatch(
-        requestRepos({ searchTerm, currentPage: 0 }) // getState().user.currentPage
-      );
+      dispatch(requestRepos({ searchTerm, currentPage: 0 }));
     } catch (error: any) {
+      console.log(error.response);
       return rejectWithValue(error.response.status);
     }
   }
@@ -81,18 +79,16 @@ export const requestUser = createAsyncThunk(
 
 export const requestRepos = createAsyncThunk(
   "user/requestRepos",
-  async (parameters: RequestReposParamsType, { rejectWithValue, dispatch }) => {
+  async (parameters: IRequestReposParams, { rejectWithValue, dispatch }) => {
     const { searchTerm, currentPage } = parameters;
     let data = await getRepos(searchTerm, currentPage);
-    let repos = [] as Array<RepoType>;
-    data.map((item: any) => {
-      let repo: RepoType = {
-        id: item.id,
-        name: item.name,
-        description: item.description,
-        html_url: item.html_url,
+    const repos: IRepo[] = data.map((repoItem: Record<string, any>) => {
+      return {
+        id: repoItem.id,
+        name: repoItem.name,
+        description: repoItem.description,
+        html_url: repoItem.html_url,
       };
-      repos.push(repo);
     });
     dispatch(setRepos(repos));
   }
@@ -100,12 +96,12 @@ export const requestRepos = createAsyncThunk(
 
 const userSlice = createSlice({
   name: "user",
-  initialState, //?
+  initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<UserType>) => {
+    setUser: (state, action: PayloadAction<IUser>) => {
       state.user = action.payload;
     },
-    setRepos: (state, action: PayloadAction<Array<RepoType>>) => {
+    setRepos: (state, action: PayloadAction<Array<IRepo>>) => {
       state.repos = action.payload;
     },
     setSearchTerm: (state, action: PayloadAction<string>) => {

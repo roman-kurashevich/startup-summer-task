@@ -1,19 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { toggleIsNewUser, setCurrentPage } from "../../redux/userSlice";
+
+import PaginationPreviousIcon from "../common/Icons/PaginationPreviousIcon/PaginationPreviousIcon";
+import PaginationNextIcon from "../common/Icons/PaginationNextIcon/PaginationNextIcon";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
+import { toggleIsNewUser, setCurrentPage } from "../../redux/userSlice";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
 import styles from "./Paginator.module.css";
 
-const Paginator: React.FC = () => {
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const [paginatorStatusString, setPaginatorStatusString] = useState("");
+type IAppSelectorResult = {
+  currentPage: number;
+  numberOfRepos: number;
+}
+
+const Paginator: FC = () => {
+  const [pageCount, setPageCount] = useState<number>(0);
+  const [itemOffset, setItemOffset] = useState<number>(0);
+  const [paginatorStatus, setPaginatorStatus] = useState<string>("");
 
   const dispatch = useAppDispatch();
-  const currentPage = useAppSelector((state) => state.user.currentPage);
-  const numberOfRepos = useAppSelector((state) => state.user.numberOfRepos);
-  const itemsPerPage: number = ITEMS_PER_PAGE;
+  const {currentPage, numberOfRepos} =useAppSelector(({user}): IAppSelectorResult => ({
+    currentPage: user.currentPage,
+    numberOfRepos: user.numberOfRepos,
+  }))
+
+  const handlePageClick = (selectedItem: { selected: number }): void => {
+    const newOffset = (selectedItem.selected * ITEMS_PER_PAGE) % numberOfRepos;
+    changeCurrentPage(selectedItem.selected);
+    setItemOffset(newOffset);
+  };
 
   const changeCurrentPage = (pageNumber: number): void => {
     dispatch(toggleIsNewUser(false));
@@ -21,56 +36,25 @@ const Paginator: React.FC = () => {
   };
 
   useEffect(() => {
-    const endOffset: number = itemOffset + itemsPerPage;
-    setPageCount(Math.ceil(numberOfRepos / itemsPerPage));
-    setPaginatorStatusString(
+    const endOffset: number = itemOffset + ITEMS_PER_PAGE;
+    setPageCount(Math.ceil(numberOfRepos / ITEMS_PER_PAGE));
+    setPaginatorStatus(
       `${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`
     );
-  }, [itemOffset, itemsPerPage]);
-
-  const handlePageClick = (selectedItem: { selected: number }): void => {
-    const newOffset = (selectedItem.selected * itemsPerPage) % numberOfRepos;
-    changeCurrentPage(selectedItem.selected);
-    setItemOffset(newOffset);
-  };
+  }, [itemOffset, numberOfRepos, ITEMS_PER_PAGE]);
 
   return (
     <div className={styles.paginationContainer}>
       <div className={styles.paginationInfo}>
-        <p>{paginatorStatusString}</p>
+        <p>{paginatorStatus}</p>
       </div>
       <ReactPaginate
-        nextLabel={
-          <svg
-            width="8"
-            height="12"
-            viewBox="0 0 8 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M1 1L6 6L1 11" stroke="#808080" strokeWidth="2" />
-          </svg>
-        }
+        nextLabel={<PaginationNextIcon />}
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         marginPagesDisplayed={1}
         pageCount={pageCount}
-        previousLabel={
-          <svg
-            width="8"
-            height="12"
-            viewBox="0 0 8 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M3.41412 6.00008L7.70701 1.70718L6.2928 0.292969L0.585693 6.00008L6.2928 11.7072L7.70701 10.293L3.41412 6.00008Z"
-              fill="#808080"
-            />
-          </svg>
-        }
+        previousLabel={<PaginationPreviousIcon />}
         pageClassName={styles.pageItem}
         pageLinkClassName={styles.pageLink}
         previousClassName={styles.pageItem}
@@ -82,8 +66,6 @@ const Paginator: React.FC = () => {
         breakLinkClassName={styles.pageLink}
         containerClassName={styles.pagination}
         activeClassName={styles.active}
-        //@ts-ignore
-        // renderOnZeroPageCount={null}
         forcePage={currentPage}
       />
     </div>

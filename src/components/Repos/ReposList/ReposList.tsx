@@ -1,17 +1,19 @@
-import React from "react";
+import React, { FC, memo } from "react";
+
+import ReposListItem from "./ReposListItem/ReposListItem";
 import { useAppSelector } from "../../../hooks/redux-hooks";
-import Repo from "./Repo/Repo";
+import { IRepo } from "../../../redux/userSlice";
 import styles from "./ReposList.module.css";
 
-const ReposList: React.FC = () => {
+const ReposList: FC = () => {
   const repos = useAppSelector((state) => state.user.repos);
   console.log("RENDER REPOS LIST");
 
   return (
     <div className={styles.reposList}>
       {repos &&
-        repos.map((repo) => (
-          <Repo
+        repos.map((repo: IRepo) => (
+          <ReposListItem
             key={repo.id}
             name={repo.name}
             url={repo.html_url}
@@ -22,4 +24,4 @@ const ReposList: React.FC = () => {
   );
 };
 
-export default React.memo(ReposList);
+export default memo(ReposList);

@@ -15,6 +15,7 @@
   line-height: 24px;
   cursor: default;
   color: #808080;
+  user-select: none;
 }
 
 .pagination {
@@ -31,7 +32,6 @@
   border-radius: 3px;
   padding: 0 0.4rem;
   margin: 0 0.2rem;
-  cursor: pointer;
 }
 
 .pageItem:last-child:hover svg path {
@@ -45,7 +45,12 @@
 .active {
    background: #0064EB;
 }
+
 .active > .pageLink {
+  color: white;
+}
+
+.active > .pageLink:hover {
   color: white;
 }
 
@@ -54,6 +59,12 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pageLink:hover {
+  color: #0064EB;
 }
 
 @media (max-width: 991px) {

@@ -17,6 +17,7 @@
   letter-spacing: 0.09rem;
   margin-bottom: 29px;
   cursor: default;
+  user-select: none;
 }
 
 @media (max-width: 680px) {

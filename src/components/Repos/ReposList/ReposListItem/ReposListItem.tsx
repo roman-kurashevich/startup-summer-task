@@ -1,23 +1,24 @@
-import React from "react";
-import styles from "./Repo.module.css";
+import React, { FC } from "react";
 
-export type RepoPropsType = {
+import styles from "./ReposListItem.module.css";
+
+export type IRepoProps = {
   name: string
   description: string
   url: string
 }
 
-const Repo: React.FC<RepoPropsType> = ({ name, description, url }) => {
+const ReposListItem: FC<IRepoProps> = ({ name, description, url }) => {
   return (
     <div className={styles.repo}>
       <a href={url} className={styles.name} target="_blank">
         {name}
       </a>
       <div className={styles.description}>
-        {description ? description : name}
+        {description || name}
       </div>
     </div>
   );
 };
 
-export default Repo;
+export default ReposListItem;
