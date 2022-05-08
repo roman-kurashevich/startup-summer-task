@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import InitialPageIcon from "../common/Icons/InitialPageIcon/InitialPageIcon";
-import styles from "./InitialPage.module.css";
+
+import styles from "./InitialPage.module.scss";
 
 const InitialPage: FC = () => {
   return (

@@ -5,13 +5,11 @@ import PaginationPreviousIcon from "../common/Icons/PaginationPreviousIcon/Pagin
 import PaginationNextIcon from "../common/Icons/PaginationNextIcon/PaginationNextIcon";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { toggleIsNewUser, setCurrentPage } from "../../redux/userSlice";
+import { selectors } from "../../redux";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
-import styles from "./Paginator.module.css";
 
-type IAppSelectorResult = {
-  currentPage: number;
-  numberOfRepos: number;
-}
+import styles from "./Paginator.module.scss";
+
 
 const Paginator: FC = () => {
   const [pageCount, setPageCount] = useState<number>(0);
@@ -19,20 +17,19 @@ const Paginator: FC = () => {
   const [paginatorStatus, setPaginatorStatus] = useState<string>("");
 
   const dispatch = useAppDispatch();
-  const {currentPage, numberOfRepos} =useAppSelector(({user}): IAppSelectorResult => ({
-    currentPage: user.currentPage,
-    numberOfRepos: user.numberOfRepos,
-  }))
-
-  const handlePageClick = (selectedItem: { selected: number }): void => {
-    const newOffset = (selectedItem.selected * ITEMS_PER_PAGE) % numberOfRepos;
-    changeCurrentPage(selectedItem.selected);
-    setItemOffset(newOffset);
-  };
+  
+  const currentPage = useAppSelector(selectors.currentPage);
+  const numberOfRepos = useAppSelector(selectors.numberOfRepos);
 
   const changeCurrentPage = (pageNumber: number): void => {
     dispatch(toggleIsNewUser(false));
     dispatch(setCurrentPage(pageNumber));
+  };
+  
+  const handlePageClick = (selectedItem: { selected: number }): void => {
+    const newOffset = (selectedItem.selected * ITEMS_PER_PAGE) % numberOfRepos;
+    changeCurrentPage(selectedItem.selected);
+    setItemOffset(newOffset);
   };
 
   useEffect(() => {
@@ -41,7 +38,7 @@ const Paginator: FC = () => {
     setPaginatorStatus(
       `${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`
     );
-  }, [itemOffset, numberOfRepos, ITEMS_PER_PAGE]);
+  }, [itemOffset, numberOfRepos]);
 
   return (
     <div className={styles.paginationContainer}>

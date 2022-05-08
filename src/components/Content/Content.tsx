@@ -8,48 +8,21 @@ import EmptyRepos from "../EmptyRepos/EmptyRepos";
 import GlobalErrorPage from "../GlobalErrorPage/GlobalErrorPage";
 import { requestRepos, requestUser } from "../../redux/userSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import styles from "./Content.module.css";
+import { selectors } from "../../redux";
 
-type IAppSelectorResult = {
-  searchTerm: string;
-  numberOfRepos: number;
-  currentPage: number;
-  isFetchingRepos: boolean;
-  isFetchingUser: boolean;
-  isError: boolean;
-  isGlobalError: boolean;
-  isNewUser: boolean;
-}
+import styles from "./Content.module.scss";
 
 const Content: FC = () => {
   const dispatch = useAppDispatch();
-  // const {
-  //   searchTerm,
-  //   numberOfRepos,
-  //   currentPage,
-  //   isFetchingRepos,
-  //   isFetchingUser,
-  //   isError,
-  //   isGlobalError,
-  //   isNewUser } = useAppSelector(({user}): IAppSelectorResult => ({
-  //   searchTerm: user.searchTerm,
-  //   numberOfRepos: user.numberOfRepos,
-  //   currentPage: user.currentPage,
-  //   isFetchingRepos: user.isFetchingRepos,
-  //   isFetchingUser: user.isFetchingUser,
-  //   isError: user.isError,
-  //   isGlobalError: user.isGlobalError,
-  //   isNewUser: user.isNewUser,
-  // }))
 
-  const searchTerm = useAppSelector((state) => state.user.searchTerm);
-  const numberOfRepos = useAppSelector((state) => state.user.numberOfRepos);
-  const currentPage = useAppSelector((state) => state.user.currentPage);
-  const isFetchingRepos = useAppSelector((state) => state.user.isFetchingRepos);
-  const isFetchingUser = useAppSelector((state) => state.user.isFetchingUser);
-  const isError = useAppSelector((state) => state.user.isError);
-  const isGlobalError = useAppSelector((state) => state.user.isGlobalError);
-  const isNewUser = useAppSelector((state) => state.user.isNewUser);
+  const searchTerm = useAppSelector(selectors.searchTerm);
+  const numberOfRepos = useAppSelector(selectors.numberOfRepos);
+  const currentPage = useAppSelector(selectors.currentPage);
+  const isFetchingRepos = useAppSelector(selectors.isFetchingRepos);
+  const isFetchingUser = useAppSelector(selectors.isFetchingUser);
+  const isError = useAppSelector(selectors.isError);
+  const isGlobalError = useAppSelector(selectors.isGlobalError);
+  const isNewUser = useAppSelector(selectors.isNewUser);
 
   console.log("RENDER CONTENT");
 
@@ -61,9 +34,9 @@ const Content: FC = () => {
 
   useEffect(() => {
     if (searchTerm && !isNewUser) {
-      dispatch(requestRepos({searchTerm, currentPage}));
+      dispatch(requestRepos({ searchTerm, currentPage }));
     }
-  }, [currentPage, dispatch, isNewUser]);
+  }, [currentPage, dispatch, isNewUser, searchTerm]);
 
   if (searchTerm.length === 0) {
     return <InitialPage />;

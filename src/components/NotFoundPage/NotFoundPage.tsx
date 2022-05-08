@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import NotFoundPageIcon from "../common/Icons/NotFoundPageIcon/NotFoundPageIcon";
-import styles from "./NotFoundPage.module.css";
+
+import styles from "./NotFoundPage.module.scss";
 
 const NotFoundPage: FC = () => {
   return (

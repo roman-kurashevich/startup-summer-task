@@ -1,0 +1,26 @@
+.notFoundPage {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+
+  .notFoundMessageContainer {
+    width: 156px;
+    height: 31px;
+    margin-top: 42px;
+
+    & > p {
+      font-weight: 400;
+      font-size: 23px;
+      line-height: 140%;
+      text-align: center;
+      cursor: default;
+      color: #808080;
+    }
+  }
+}
+
+
+ 

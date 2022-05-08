@@ -1,12 +1,14 @@
 import React, { FC, memo } from "react";
 
-import ReposListItem from "./ReposListItem/ReposListItem";
 import { useAppSelector } from "../../../hooks/redux-hooks";
 import { IRepo } from "../../../redux/userSlice";
-import styles from "./ReposList.module.css";
+import { selectors } from "../../../redux";
+
+import ReposListItem from "./ReposListItem/ReposListItem";
+import styles from "./ReposList.module.scss";
 
 const ReposList: FC = () => {
-  const repos = useAppSelector((state) => state.user.repos);
+  const repos = useAppSelector(selectors.repos);
   console.log("RENDER REPOS LIST");
 
   return (

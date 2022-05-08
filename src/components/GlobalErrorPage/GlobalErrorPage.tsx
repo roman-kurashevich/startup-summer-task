@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import NotFoundPageIcon from "../common/Icons/NotFoundPageIcon/NotFoundPageIcon";
-import styles from "./GlobalErrorPage.module.css";
+
+import styles from "./GlobalErrorPage.module.scss";
 
 const GlobalErrorPage: FC = () => {
   return (

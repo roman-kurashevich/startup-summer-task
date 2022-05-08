@@ -1,10 +1,11 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from "react";
 
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import {setSearchTerm} from "../../redux/userSlice"
+import { setSearchTerm } from "../../redux/userSlice";
 import LogoIcon from "../common/Icons/LogoIcon/LogoIcon";
 import SearchIcon from "../common/Icons/SearchIcon/SearchIcon";
-import styles from "./Header.module.css";
+
+import styles from "./Header.module.scss";
 
 const Header: FC = () => {
   const [tempSearch, setTempSearch] = useState<string>("");

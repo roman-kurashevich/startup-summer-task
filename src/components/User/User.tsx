@@ -4,24 +4,15 @@ import Preloader from "../Preloader/Preloader";
 import PeopleIcon from "../common/Icons/PeopleIcon/PeopleIcon";
 import PersonIcon from "../common/Icons/PersonIcon/PersonIcon";
 import { useAppSelector } from "../../hooks/redux-hooks";
-import { IUser } from "../../redux/userSlice";
-import { getConvertedFollowersNumber } from "./User.helpers";
-import styles from "./User.module.css";
+import { selectors } from "../../redux";
 
-type IAppSelectorResult = {
-  user: IUser;
-  isFetchingUser: boolean;
-}
+import { getConvertedFollowersNumber } from "./User.helpers";
+import styles from "./User.module.scss";
+
 
 const User: FC = () => {
-  // const {user, isFetchingUser} = useAppSelector(({user}): IAppSelectorResult => ({
-  //   user: user.user,
-  //   isFetchingUser: user.isFetchingUser
-  // }))
-  const user = useAppSelector((state) => state.user.user);
-  const isFetchingUser = useAppSelector(
-    (state) => state.user.isFetchingUser
-  );
+  const user = useAppSelector(selectors.user);
+  const isFetchingUser = useAppSelector(selectors.isFetchingUser);
 
   console.log("RENDER USER");
 
@@ -46,7 +37,7 @@ const User: FC = () => {
 
           <div className={styles.name}>{name}</div>
 
-          <a className={styles.link} href={url} target="_blank">
+          <a className={styles.link} href={url} target="_blank" rel="noreferrer">
             {login}
           </a>
 

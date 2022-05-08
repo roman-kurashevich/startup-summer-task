@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 
 import EmptyReposIcon from "../common/Icons/EmptyReposIcon/EmptyReposIcon";
-import styles from "./EmptyRepos.module.css";
+
+import styles from "./EmptyRepos.module.scss";
 
 const EmptyRepos: FC = () => {
   return (

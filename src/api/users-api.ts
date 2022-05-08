@@ -1,10 +1,10 @@
-import { instance } from "./api";
 import { ITEMS_PER_PAGE } from "../constants/constants";
 
+import { instance } from "./api";
+
 export const getUser = async (userName: string) => {
-  const data = await instance
-    .get<Promise<Record<string, any>>>(userName)
-    .then((response) => response.data);
+  const data = await instance.get<Promise<Record<string, any>>>(userName).then((response) => response.data);
+  console.log(data);
   return data;
 };
 

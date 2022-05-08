@@ -1,0 +1,72 @@
+{
+    "plugins": [
+        "import",
+        "react",
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "extends": [
+        "plugin:react-hooks/recommended",
+        "airbnb-typescript",
+        "plugin:prettier/recommended"
+    ],
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "ignorePatterns": ["node_modules", "dist"],
+    "overrides": [
+        {
+            "files": ["*.ts", "*.tsx"], // Your TypeScript files extension
+            "parserOptions": {
+                "ecmaFeatures": {
+                    "jsx": true
+                },
+                "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+            }
+        }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "prefer-const": ["error", {
+          "destructuring": "any",
+          "ignoreReadBeforeAssign": false
+        }],
+        "prettier/prettier": "error",
+        "@typescript-eslint/no-shadow": "error",
+        "no-shadow": "off",
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "typedefs": false, "variables": false }],
+        "no-prototype-builtins": "off",
+        "import/prefer-default-export": "off",
+        "react/destructuring-assignment": "off",
+        "react/jsx-props-no-spreading": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "react/static-property-placement": "off",
+        "@typescript-eslint/camelcase": "off",
+        "no-param-reassign": "off",
+        "naming-convention": "off",
+        "react/require-default-props": "off",
+        "react/button-has-type": "off",
+        "@typescript-eslint/no-unused-expressions": "off",
+        "array-callback-return": "off",
+        "consistent-return": "off",
+        "react/prop-types": [2, { "ignore": ["children"] }],
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": ["**/*.tests.ts", "**/*.setup.js", "**/*.config.js"]
+          }
+        ],
+        "no-return-assign": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "default",
+            "format": ["camelCase", "strictCamelCase", "PascalCase", "StrictPascalCase", "snake_case", "UPPER_CASE"],
+            "leadingUnderscore": "allow",
+            "trailingUnderscore": "allow"
+          }
+        ]
+      }
+}

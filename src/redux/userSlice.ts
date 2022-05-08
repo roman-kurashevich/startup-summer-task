@@ -53,8 +53,8 @@ export const requestUser = createAsyncThunk(
   "user/requestUser",
   async (searchTerm: string, { rejectWithValue, dispatch }) => {
     try {
-      let data = await getUser(searchTerm);
-      let user: IUser = {
+      const data = await getUser(searchTerm);
+      const user: IUser = {
         name: data.name,
         login: data.login,
         followers: data.followers,
@@ -79,9 +79,9 @@ export const requestUser = createAsyncThunk(
 
 export const requestRepos = createAsyncThunk(
   "user/requestRepos",
-  async (parameters: IRequestReposParams, { rejectWithValue, dispatch }) => {
+  async (parameters: IRequestReposParams, { dispatch }) => {
     const { searchTerm, currentPage } = parameters;
-    let data = await getRepos(searchTerm, currentPage);
+    const data = await getRepos(searchTerm, currentPage);
     const repos: IRepo[] = data.map((repoItem: Record<string, any>) => {
       return {
         id: repoItem.id,
@@ -130,7 +130,6 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [requestUser.fulfilled.type]: () => {},
     [requestUser.pending.type]: (state) => {
       state.isGlobalError = false;
       state.isFetchingUser = true;
