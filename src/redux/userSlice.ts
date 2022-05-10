@@ -67,8 +67,6 @@ export const requestUser = createAsyncThunk(
       dispatch(toggleIsError(false));
       dispatch(setNumberOfRepos(data.public_repos));
       dispatch(toggleIsFetchingUser(false));
-      dispatch(toggleIsNewUser(true));
-
       dispatch(requestRepos({ searchTerm, currentPage: 0 }));
     } catch (error: any) {
       return rejectWithValue(error.response.status);

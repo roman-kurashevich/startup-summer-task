@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, KeyboardEvent as ReactKeyboardEvent, useState } from "react";
 
 import { useAppDispatch } from "../../hooks/redux-hooks";
-import { setSearchTerm } from "../../redux/userSlice";
+import { setSearchTerm, toggleIsNewUser } from "../../redux/userSlice";
 import LogoIcon from "../common/Icons/LogoIcon/LogoIcon";
 import SearchIcon from "../common/Icons/SearchIcon/SearchIcon";
 
@@ -17,11 +17,13 @@ const Header: FC = () => {
 
   const changeSearchTerm = (): void => {
     dispatch(setSearchTerm(tempSearch));
+    dispatch(toggleIsNewUser(true));
   };
 
   const handleKeyPress = (event: ReactKeyboardEvent<HTMLInputElement>): void => {
     if (event.key === "Enter") {
       dispatch(setSearchTerm(tempSearch));
+      dispatch(toggleIsNewUser(true));
     }
   };
 
