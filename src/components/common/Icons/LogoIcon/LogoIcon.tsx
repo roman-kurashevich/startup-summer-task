@@ -1,15 +1,9 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
 const LogoIcon: FC = () => {
   return (
     <div>
-      <svg
-        width="42"
-        height="40"
-        viewBox="0 0 42 40"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width="42" height="40" viewBox="0 0 42 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clipPath="url(#clip0_86_329)">
           <path
             fillRule="evenodd"

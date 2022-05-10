@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
-import "./Preloader.scss";
+import styles from "./Preloader.module.scss";
 
 const Preloader: FC = () => {
-  return <div className="loader"></div>;
+  return <div className={styles.loader}></div>;
 };
 
 export default Preloader;

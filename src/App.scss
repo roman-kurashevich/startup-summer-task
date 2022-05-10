@@ -1,3 +1,5 @@
+@import "./styles/variables.scss";
+
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +12,6 @@ html {
 }
 
 .app {
-  background: #F9F9F9;
+  background: $main-background;
   min-height: 100vh;
 }

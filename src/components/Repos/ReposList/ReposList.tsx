@@ -9,18 +9,12 @@ import styles from "./ReposList.module.scss";
 
 const ReposList: FC = () => {
   const repos = useAppSelector(selectors.repos);
-  console.log("RENDER REPOS LIST");
 
   return (
     <div className={styles.reposList}>
       {repos &&
         repos.map((repo: IRepo) => (
-          <ReposListItem
-            key={repo.id}
-            name={repo.name}
-            url={repo.html_url}
-            description={repo.description}
-          />
+          <ReposListItem key={repo.id} name={repo.name} url={repo.html_url} description={repo.description} />
         ))}
     </div>
   );

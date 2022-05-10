@@ -5,8 +5,6 @@ import Header from "./components/Header/Header";
 import "./App.scss";
 
 function App() {
-  console.log("RENDER APP");
-
   return (
     <div className="app">
       <Header />

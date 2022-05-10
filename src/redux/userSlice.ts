@@ -71,7 +71,6 @@ export const requestUser = createAsyncThunk(
 
       dispatch(requestRepos({ searchTerm, currentPage: 0 }));
     } catch (error: any) {
-      console.log(error.response);
       return rejectWithValue(error.response.status);
     }
   }
@@ -140,7 +139,6 @@ const userSlice = createSlice({
         state.isError = true;
         state.isFetchingUser = false;
       } else {
-        console.log("GLOBAL ERROR");
         state.isGlobalError = true;
       }
     },
@@ -149,9 +147,6 @@ const userSlice = createSlice({
     },
     [requestRepos.pending.type]: (state) => {
       state.isFetchingRepos = true;
-    },
-    [requestRepos.rejected.type]: () => {
-      console.log("Fetching repos error");
     },
   },
 });

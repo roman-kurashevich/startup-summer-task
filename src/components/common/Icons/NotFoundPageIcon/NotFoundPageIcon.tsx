@@ -1,14 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
 const NotFoundPageIcon: FC = () => {
   return (
-    <svg
-      width="65"
-      height="75"
-      viewBox="0 0 65 75"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="65" height="75" viewBox="0 0 65 75" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

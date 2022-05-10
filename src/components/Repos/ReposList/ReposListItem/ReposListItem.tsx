@@ -14,9 +14,7 @@ const ReposListItem: FC<IRepoProps> = ({ name, description, url }) => {
       <a href={url} className={styles.name} target="_blank" rel="noreferrer">
         {name}
       </a>
-      <div className={styles.description}>
-        {description || name}
-      </div>
+      <div className={styles.description}>{description || name}</div>
     </div>
   );
 };

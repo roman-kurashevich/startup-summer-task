@@ -10,14 +10,13 @@ import { ITEMS_PER_PAGE } from "../../constants/constants";
 
 import styles from "./Paginator.module.scss";
 
-
 const Paginator: FC = () => {
   const [pageCount, setPageCount] = useState<number>(0);
   const [itemOffset, setItemOffset] = useState<number>(0);
   const [paginatorStatus, setPaginatorStatus] = useState<string>("");
 
   const dispatch = useAppDispatch();
-  
+
   const currentPage = useAppSelector(selectors.currentPage);
   const numberOfRepos = useAppSelector(selectors.numberOfRepos);
 
@@ -25,7 +24,7 @@ const Paginator: FC = () => {
     dispatch(toggleIsNewUser(false));
     dispatch(setCurrentPage(pageNumber));
   };
-  
+
   const handlePageClick = (selectedItem: { selected: number }): void => {
     const newOffset = (selectedItem.selected * ITEMS_PER_PAGE) % numberOfRepos;
     changeCurrentPage(selectedItem.selected);
@@ -35,9 +34,7 @@ const Paginator: FC = () => {
   useEffect(() => {
     const endOffset: number = itemOffset + ITEMS_PER_PAGE;
     setPageCount(Math.ceil(numberOfRepos / ITEMS_PER_PAGE));
-    setPaginatorStatus(
-      `${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`
-    );
+    setPaginatorStatus(`${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`);
   }, [itemOffset, numberOfRepos]);
 
   return (

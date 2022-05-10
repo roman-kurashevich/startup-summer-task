@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .paginationContainer {
   align-self: flex-end;
   display: flex;
@@ -12,7 +14,7 @@
       font-size: 14px;
       line-height: 24px;
       cursor: default;
-      color: #808080;
+      color: $dark-grey;
       user-select: none;
     }
   }
@@ -33,7 +35,7 @@
       margin: 0 0.2rem;
 
       .pageLink {
-        color: #808080;
+        color: $dark-grey;
         font-weight: 400;
         font-size: 14px;
         line-height: 21px;
@@ -41,28 +43,28 @@
         user-select: none;
 
         &:hover {
-          color: #0064EB;
+          color: $blue;
         }
       }
 
       &:last-child:hover svg path {
-        stroke: #0064EB;
+        stroke: $blue;
       }
       
       &:first-child:hover svg path {
-        fill: #0064EB;
+        fill: $blue;
       }
     }
 
     .active {
-      background: #0064EB;
+      background: $blue;
 
       & > .pageLink {
-        color: white;
+        color: $white;
       }
       
       & > .pageLink:hover {
-        color: white;
+        color: $white;
       }
     }
 

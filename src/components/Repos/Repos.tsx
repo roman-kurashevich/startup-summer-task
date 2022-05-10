@@ -8,26 +8,15 @@ import { selectors } from "../../redux";
 import ReposList from "./ReposList/ReposList";
 import styles from "./Repos.module.scss";
 
-
 const Repos: FC = () => {
   const numberOfRepos = useAppSelector(selectors.numberOfRepos);
   const isFetchingUser = useAppSelector(selectors.isFetchingUser);
   const isFetchingRepos = useAppSelector(selectors.isFetchingRepos);
 
-  console.log("RENDER REPOS");
-
   return (
     <div className={styles.repos}>
-      {!isFetchingUser && (
-        <div className={styles.title}>
-          Repositories ({isFetchingUser ? "" : numberOfRepos})
-        </div>
-      )}
-      {isFetchingRepos ? (
-        <Preloader />
-      ) : (  
-        <ReposList />
-      )}
+      {!isFetchingUser && <div className={styles.title}>Repositories ({isFetchingUser ? "" : numberOfRepos})</div>}
+      {isFetchingRepos ? <Preloader /> : <ReposList />}
       {!isFetchingUser && <Paginator />}
     </div>
   );

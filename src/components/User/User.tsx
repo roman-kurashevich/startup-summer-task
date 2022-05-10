@@ -9,21 +9,11 @@ import { selectors } from "../../redux";
 import { getConvertedFollowersNumber } from "./User.helpers";
 import styles from "./User.module.scss";
 
-
 const User: FC = () => {
   const user = useAppSelector(selectors.user);
   const isFetchingUser = useAppSelector(selectors.isFetchingUser);
 
-  console.log("RENDER USER");
-
-  const {
-    avatar_url: avatar,
-    name,
-    login,
-    followers,
-    following,
-    html_url: url,
-  } = user;
+  const { avatar_url: avatar, name, login, followers, following, html_url: url } = user;
 
   return (
     <div className={styles.user}>

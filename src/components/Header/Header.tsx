@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useState } from "react";
+import React, { ChangeEvent, FC, KeyboardEvent as ReactKeyboardEvent, useState } from "react";
 
 import { useAppDispatch } from "../../hooks/redux-hooks";
 import { setSearchTerm } from "../../redux/userSlice";
@@ -19,13 +19,11 @@ const Header: FC = () => {
     dispatch(setSearchTerm(tempSearch));
   };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
+  const handleKeyPress = (event: ReactKeyboardEvent<HTMLInputElement>): void => {
     if (event.key === "Enter") {
       dispatch(setSearchTerm(tempSearch));
     }
   };
-
-  console.log("RENDER HEADER");
 
   return (
     <div className={styles.header}>

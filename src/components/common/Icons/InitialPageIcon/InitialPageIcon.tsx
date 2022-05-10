@@ -1,14 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
 const InitialPageIcon: FC = () => {
   return (
-    <svg
-      width="66"
-      height="66"
-      viewBox="0 0 66 66"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

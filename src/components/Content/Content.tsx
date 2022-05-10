@@ -24,8 +24,6 @@ const Content: FC = () => {
   const isGlobalError = useAppSelector(selectors.isGlobalError);
   const isNewUser = useAppSelector(selectors.isNewUser);
 
-  console.log("RENDER CONTENT");
-
   useEffect(() => {
     if (searchTerm) {
       dispatch(requestUser(searchTerm));
@@ -51,7 +49,7 @@ const Content: FC = () => {
   }
 
   const shouldShowRepos: boolean = numberOfRepos === 0 && !isFetchingRepos && !isFetchingUser;
-  
+
   return (
     <div className={styles.content}>
       <User />
