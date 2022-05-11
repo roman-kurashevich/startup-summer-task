@@ -47,13 +47,13 @@
       line-height: 17px;
       letter-spacing: 0.01em;
 
-      @media only screen and (max-device-width: 480px) {
+      @media only screen and (max-device-width: 768px) {
         font-size: 16px;
       }
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 350px) {
     padding: 16px 20px;
   }
 }
