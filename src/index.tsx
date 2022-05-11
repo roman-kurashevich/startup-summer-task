@@ -6,7 +6,13 @@ import App from "./App";
 import store from "./redux/store";
 import "./index.scss";
 
-window.screen.orientation.lock("portrait");
+if (
+  navigator.userAgent.indexOf("iphone") > -1 ||
+  navigator.userAgent.indexOf("android") > -1 ||
+  navigator.userAgent.indexOf("webos") > -1
+) {
+  window.screen.orientation.lock("portrait");
+}
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
