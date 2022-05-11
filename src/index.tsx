@@ -7,9 +7,9 @@ import store from "./redux/store";
 import "./index.scss";
 
 if (
-  navigator.userAgent.indexOf("iphone") > -1 ||
-  navigator.userAgent.indexOf("android") > -1 ||
-  navigator.userAgent.indexOf("webos") > -1
+  navigator.userAgent.toLowerCase().indexOf("iphone") > -1 ||
+  navigator.userAgent.toLowerCase().indexOf("android") > -1 ||
+  navigator.userAgent.toLowerCase().indexOf("webos") > -1
 ) {
   window.screen.orientation.lock("portrait");
 }
