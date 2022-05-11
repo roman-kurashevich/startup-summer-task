@@ -6,6 +6,8 @@ import App from "./App";
 import store from "./redux/store";
 import "./index.scss";
 
+window.screen.orientation.lock("portrait");
+
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
 const root = ReactDOM.createRoot(rootElement);
