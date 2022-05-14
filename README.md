@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+<div id="top"></div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
 
-## Available Scripts
+  <img src="https://user-images.githubusercontent.com/71850712/168294857-8990b5a4-1b21-4940-ac34-14564ea47c20.png" alt="Logo" width="100" height="100">
 
-In the project directory, you can run:
+  <h3 align="center">My GitHub App</h3>
 
-### `npm start`
+  <p align="center">
+    Find GitHub users and their repositories.
+    <br />
+    <br />
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- ABOUT THE PROJECT -->
 
-### `npm test`
+## About The Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Product Name Screen Shot](./public/readmescreenshot.png)
 
-### `npm run build`
+This application provides possibility to search for GitHub users and see their data and their repositories list. It is also possible to open user profile or specific repository of user on GitHub.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This application designed using the following technologies:
 
-### `npm run eject`
+- [React.js 18.0.0](https://reactjs.org/)
+- [Redux Toolkit 1.8.1](https://redux-toolkit.js.org/)
+- [TypeScript 4.6.3](https://www.typescriptlang.org/)
+- [Sass 7.0.1](https://sass-lang.com/)
+- [GitHub REST API](https://docs.github.com/en/rest)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Also additional libraries and tools were used for application development:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ESLint 8.14.0](https://eslint.org/)
+- [Prettier 2.6.2](https://prettier.io/)
+- [Axios 0.26.1](https://www.npmjs.com/package/axios)
+- [React Paginate 8.1.3](https://www.npmjs.com/package/react-paginate)
+- [Redux DevTools](https://github.com/reduxjs/redux-devtools)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- GETTING STARTED -->
 
-## Learn More
+## Getting Started
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To get a local copy up and running follow these simple example steps.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Installation
 
-### Code Splitting
+1. Clone the repo
+   ```sh
+   git clone https://github.com/roman-kurashevich/startup-summer-task
+   ```
+2. After you clone this repo, go to its root directory and install all the dependencies using NPM
+   ```sh
+   npm install
+   ```
+3. Once the dependencies are installed, you can start the application
+   ```sh
+   npm start
+   ```
+4. You will then be able to access it at localhost:3000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### Analyzing the Bundle Size
+<!-- USAGE EXAMPLES -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+There is a search field on the page for entering username.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+If user exists, user page is displayed after entering username and pressing Enter button on keyboard (or clicking on magnifying icon on the left of search field). User page contains user information with list of his repositories.
 
-### Advanced Configuration
+If user doesn't exist, the page with text "User not found" will be displayed.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+If user doesn't have any public repositories, the message "Repository is empty" will be displayed instead of repositories list.
 
-### Deployment
+After clicking on username link the GitHub profile is opened in new tab.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+After clicking on repository name the GitHub page of this repository is opened in new tab.
 
-### `npm run build` fails to minify
+There is a pagination in the list of repositories.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The application has responsive design and can be used in browsers on mobile devices.
+
+<br>
+
+![demookbig](https://user-images.githubusercontent.com/71850712/168294123-cd750b0a-b9ac-47ac-822d-32aae97a406d.gif)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Roman Kurashevich - [@my linkedin](https://www.linkedin.com/in/roman-kurashevich-ab3a2b220/) - rkurashevich@gmail.com
+
+Project Link: [https://my-github-app.netlify.app/](https://my-github-app.netlify.app/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
