@@ -76,18 +76,22 @@ export const requestUser = createAsyncThunk(
 
 export const requestRepos = createAsyncThunk(
   "user/requestRepos",
-  async (parameters: IRequestReposParams, { dispatch }) => {
-    const { searchTerm, currentPage } = parameters;
-    const data = await getRepos(searchTerm, currentPage);
-    const repos: IRepo[] = data.map((repoItem: Record<string, any>) => {
-      return {
-        id: repoItem.id,
-        name: repoItem.name,
-        description: repoItem.description,
-        html_url: repoItem.html_url,
-      };
-    });
-    dispatch(setRepos(repos));
+  async (parameters: IRequestReposParams, { rejectWithValue, dispatch }) => {
+    try {
+      const { searchTerm, currentPage } = parameters;
+      const data = await getRepos(searchTerm, currentPage);
+      const repos: IRepo[] = data.map((repoItem: Record<string, any>) => {
+        return {
+          id: repoItem.id,
+          name: repoItem.name,
+          description: repoItem.description,
+          html_url: repoItem.html_url,
+        };
+      });
+      dispatch(setRepos(repos));
+    } catch (error: any) {
+      return rejectWithValue(error.response.status);
+    }
   }
 );
 
@@ -145,6 +149,9 @@ const userSlice = createSlice({
     },
     [requestRepos.pending.type]: (state) => {
       state.isFetchingRepos = true;
+    },
+    [requestRepos.rejected.type]: (state) => {
+      state.isGlobalError = true;
     },
   },
 });

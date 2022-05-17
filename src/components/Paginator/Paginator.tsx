@@ -34,7 +34,13 @@ const Paginator: FC = () => {
   useEffect(() => {
     const endOffset: number = itemOffset + ITEMS_PER_PAGE;
     setPageCount(Math.ceil(numberOfRepos / ITEMS_PER_PAGE));
-    setPaginatorStatus(`${itemOffset + 1}-${endOffset} of ${numberOfRepos} items`);
+    if (itemOffset + 1 === numberOfRepos) {
+      setPaginatorStatus(`${itemOffset + 1} of ${numberOfRepos} items`);
+    } else {
+      setPaginatorStatus(
+        `${itemOffset + 1}-${numberOfRepos < endOffset ? numberOfRepos : endOffset} of ${numberOfRepos} items`
+      );
+    }
   }, [itemOffset, numberOfRepos]);
 
   return (
