@@ -5,7 +5,7 @@ import PaginationPreviousIcon from "../common/Icons/PaginationPreviousIcon/Pagin
 import PaginationNextIcon from "../common/Icons/PaginationNextIcon/PaginationNextIcon";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
 import { toggleIsNewUser, setCurrentPage } from "../../redux/userSlice";
-import { selectors } from "../../redux";
+import { userSelectors } from "../../redux";
 import { ITEMS_PER_PAGE } from "../../constants/constants";
 
 import styles from "./Paginator.module.scss";
@@ -17,8 +17,8 @@ const Paginator: FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const currentPage = useAppSelector(selectors.currentPage);
-  const numberOfRepos = useAppSelector(selectors.numberOfRepos);
+  const currentPage = useAppSelector(userSelectors.currentPage);
+  const numberOfRepos = useAppSelector(userSelectors.numberOfRepos);
 
   const changeCurrentPage = (pageNumber: number): void => {
     dispatch(toggleIsNewUser(false));

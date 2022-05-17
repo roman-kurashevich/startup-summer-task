@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 
+import { copy } from "../../copy";
 import NotFoundPageIcon from "../common/Icons/NotFoundPageIcon/NotFoundPageIcon";
 
 import styles from "./NotFoundPage.module.scss";
@@ -9,7 +10,7 @@ const NotFoundPage: FC = () => {
     <div className={styles.notFoundPage}>
       <NotFoundPageIcon />
       <div className={styles.notFoundMessageContainer}>
-        <p>User not found</p>
+        <p>{copy.userNotFound}</p>
       </div>
     </div>
   );

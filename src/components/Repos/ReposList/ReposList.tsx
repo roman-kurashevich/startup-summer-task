@@ -2,13 +2,13 @@ import React, { FC, memo } from "react";
 
 import { useAppSelector } from "../../../hooks/redux-hooks";
 import { IRepo } from "../../../redux/userSlice";
-import { selectors } from "../../../redux";
+import { userSelectors } from "../../../redux";
 
 import ReposListItem from "./ReposListItem/ReposListItem";
 import styles from "./ReposList.module.scss";
 
 const ReposList: FC = () => {
-  const repos = useAppSelector(selectors.repos);
+  const repos = useAppSelector(userSelectors.repos);
 
   return (
     <div className={styles.reposList}>

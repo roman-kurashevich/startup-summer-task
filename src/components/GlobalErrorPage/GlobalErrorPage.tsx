@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 
+import { copy } from "../../copy";
 import NotFoundPageIcon from "../common/Icons/NotFoundPageIcon/NotFoundPageIcon";
 
 import styles from "./GlobalErrorPage.module.scss";
@@ -9,7 +10,7 @@ const GlobalErrorPage: FC = () => {
     <div className={styles.notFoundPage}>
       <NotFoundPageIcon />
       <div className={styles.notFoundMessageContainer}>
-        <p>Something went wrong</p>
+        <p>{copy.somethingWentWrong}</p>
       </div>
     </div>
   );

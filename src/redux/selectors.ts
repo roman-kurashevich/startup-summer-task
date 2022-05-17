@@ -1,13 +1,26 @@
 import { AppStateType } from "./store";
 import { IRepo, IUser } from "./userSlice";
 
-export const user = (state: AppStateType): IUser => state.user.user;
-export const repos = (state: AppStateType): IRepo[] => state.user.repos;
-export const searchTerm = (state: AppStateType): string => state.user.searchTerm;
-export const currentPage = (state: AppStateType): number => state.user.currentPage;
-export const numberOfRepos = (state: AppStateType): number => state.user.numberOfRepos;
-export const isFetchingUser = (state: AppStateType): boolean => state.user.isFetchingUser;
-export const isFetchingRepos = (state: AppStateType): boolean => state.user.isFetchingRepos;
-export const isError = (state: AppStateType): boolean => state.user.isError;
-export const isGlobalError = (state: AppStateType): boolean => state.user.isGlobalError;
-export const isNewUser = (state: AppStateType): boolean => state.user.isNewUser;
+const user = (state: AppStateType): IUser => state.user.user;
+const repos = (state: AppStateType): IRepo[] => state.user.repos;
+const searchTerm = (state: AppStateType): string => state.user.searchTerm;
+const currentPage = (state: AppStateType): number => state.user.currentPage;
+const numberOfRepos = (state: AppStateType): number => state.user.numberOfRepos;
+const isFetchingUser = (state: AppStateType): boolean => state.user.isFetchingUser;
+const isFetchingRepos = (state: AppStateType): boolean => state.user.isFetchingRepos;
+const isError = (state: AppStateType): boolean => state.user.isError;
+const isGlobalError = (state: AppStateType): boolean => state.user.isGlobalError;
+const isNewUser = (state: AppStateType): boolean => state.user.isNewUser;
+
+export const userSelectors = {
+  user,
+  repos,
+  searchTerm,
+  currentPage,
+  numberOfRepos,
+  isFetchingUser,
+  isFetchingRepos,
+  isError,
+  isGlobalError,
+  isNewUser,
+};

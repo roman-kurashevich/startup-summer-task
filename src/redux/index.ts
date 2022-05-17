@@ -1,1 +1,1 @@
-export * as selectors from "./selectors";
+export { userSelectors as userSelectors } from "./selectors";

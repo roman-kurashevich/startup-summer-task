@@ -3,15 +3,15 @@ import React, { FC, memo } from "react";
 import Paginator from "../Paginator/Paginator";
 import Preloader from "../Preloader/Preloader";
 import { useAppSelector } from "../../hooks/redux-hooks";
-import { selectors } from "../../redux";
+import { userSelectors } from "../../redux";
 
 import ReposList from "./ReposList/ReposList";
 import styles from "./Repos.module.scss";
 
 const Repos: FC = () => {
-  const numberOfRepos = useAppSelector(selectors.numberOfRepos);
-  const isFetchingUser = useAppSelector(selectors.isFetchingUser);
-  const isFetchingRepos = useAppSelector(selectors.isFetchingRepos);
+  const numberOfRepos = useAppSelector(userSelectors.numberOfRepos);
+  const isFetchingUser = useAppSelector(userSelectors.isFetchingUser);
+  const isFetchingRepos = useAppSelector(userSelectors.isFetchingRepos);
 
   return (
     <div className={styles.repos}>

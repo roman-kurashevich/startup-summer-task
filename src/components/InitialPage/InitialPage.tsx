@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 
+import { copy } from "../../copy";
 import InitialPageIcon from "../common/Icons/InitialPageIcon/InitialPageIcon";
 
 import styles from "./InitialPage.module.scss";
@@ -9,7 +10,7 @@ const InitialPage: FC = () => {
     <div className={styles.initialPage}>
       <InitialPageIcon />
       <div className={styles.startingMessageContainer}>
-        <p>Start with searching a GitHub user</p>
+        <p>{copy.startSearching}</p>
       </div>
     </div>
   );

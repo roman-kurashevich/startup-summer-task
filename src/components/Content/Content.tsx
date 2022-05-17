@@ -8,21 +8,21 @@ import EmptyRepos from "../EmptyRepos/EmptyRepos";
 import GlobalErrorPage from "../GlobalErrorPage/GlobalErrorPage";
 import { requestRepos, requestUser } from "../../redux/userSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux-hooks";
-import { selectors } from "../../redux";
+import { userSelectors } from "../../redux";
 
 import styles from "./Content.module.scss";
 
 const Content: FC = () => {
   const dispatch = useAppDispatch();
 
-  const searchTerm = useAppSelector(selectors.searchTerm);
-  const numberOfRepos = useAppSelector(selectors.numberOfRepos);
-  const currentPage = useAppSelector(selectors.currentPage);
-  const isFetchingRepos = useAppSelector(selectors.isFetchingRepos);
-  const isFetchingUser = useAppSelector(selectors.isFetchingUser);
-  const isError = useAppSelector(selectors.isError);
-  const isGlobalError = useAppSelector(selectors.isGlobalError);
-  const isNewUser = useAppSelector(selectors.isNewUser);
+  const searchTerm = useAppSelector(userSelectors.searchTerm);
+  const numberOfRepos = useAppSelector(userSelectors.numberOfRepos);
+  const currentPage = useAppSelector(userSelectors.currentPage);
+  const isFetchingRepos = useAppSelector(userSelectors.isFetchingRepos);
+  const isFetchingUser = useAppSelector(userSelectors.isFetchingUser);
+  const isError = useAppSelector(userSelectors.isError);
+  const isGlobalError = useAppSelector(userSelectors.isGlobalError);
+  const isNewUser = useAppSelector(userSelectors.isNewUser);
 
   useEffect(() => {
     if (searchTerm) {
